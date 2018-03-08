@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :login_guard
+  # before_action :login_guard
+
   def new
     render :new
   end
@@ -21,12 +22,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if logged_in?
+
+    # if logged_in?
       current_user.session_token = current_user.reset_session_token!
       current_user.save!
       session[:session_token] = nil
       redirect_to new_session_url
-    end
+    # end
   end
 
 private
